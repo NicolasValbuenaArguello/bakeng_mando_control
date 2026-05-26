@@ -2848,9 +2848,6 @@ CREATE TABLE IF NOT EXISTS armamento_asignado(
     numero_serie VARCHAR(100) REFERENCES armamento_general(numero_serie) ON DELETE CASCADE,
     cc BIGINT REFERENCES personal_novedades(cc) ON DELETE CASCADE,
 
-    fecha_asignacion DATE,
-    fecha_devolucion DATE,
-    estado_asignacion VARCHAR(20),
     fecha_informacion DATE,
     usuario_ingreso TEXT,
     nivel_unidad TEXT,
@@ -2862,9 +2859,7 @@ CREATE TABLE IF NOT EXISTS armamento_asignado_historial(
     id SERIAL PRIMARY KEY,
     numero_serie VARCHAR(100) NOT NULL,
     cc BIGINT NOT NULL,
-    fecha_asignacion DATE,
-    fecha_devolucion DATE,
-    estado_asignacion VARCHAR(20),
+
     fecha_informacion DATE NOT NULL,
     usuario_ingreso TEXT,
     nivel_unidad TEXT,
@@ -2874,7 +2869,3 @@ CREATE TABLE IF NOT EXISTS armamento_asignado_historial(
 
 CREATE UNIQUE INDEX IF NOT EXISTS ux_armamento_asignado_hist_relacion_fecha
 ON armamento_asignado_historial (numero_serie, cc, fecha_informacion);
-
-CREATE UNIQUE INDEX IF NOT EXISTS unica_asignacion_activa
-ON armamento_asignado (numero_serie)
-WHERE estado_asignacion = 'ACTIVO';

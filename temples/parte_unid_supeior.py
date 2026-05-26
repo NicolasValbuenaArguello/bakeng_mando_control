@@ -1,6 +1,9 @@
 from docxtpl import DocxTemplate
 from datetime import datetime
-from base_datos.base_datos import *
+try:
+    from base_datos.base_datos import *
+except ModuleNotFoundError:
+    Base_datos_central = None
 #from mapa.distancias import *
 import os
 APP_PATH = os.getcwd()
@@ -8,6 +11,8 @@ APP_PATH = os.getcwd()
 concion_bd = Base_datos_central
 def query_bd(self):
     def comando_query(self, **kwargs):
+        if concion_bd is None:
+            raise RuntimeError("No se encontro el modulo local base_datos.base_datos")
         datos = concion_bd.read_query_dinamico(self, **kwargs)
         return datos
     return  comando_query

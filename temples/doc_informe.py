@@ -1,6 +1,9 @@
 from docxtpl import DocxTemplate
 from datetime import datetime
-from base_datos.base_datos import *
+try:
+    from base_datos.base_datos import *
+except ModuleNotFoundError:
+    pass
 #from mapa.distancias import *
 import os
 APP_PATH = os.getcwd()

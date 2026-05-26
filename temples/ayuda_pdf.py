@@ -452,7 +452,8 @@ def generar_parte_diario_pdf(tabla2, tabla1, fila_para_qr=None,
 # ----------------------------
 def generar_parte_diario_armamento_pdf(cabecera_0, tabla_0, cabecera_1, tabla_1, cabecera_2, tabla_2, fila_para_qr=None,
                              nombre_archivo="parte_diario.pdf",
-                             abrir=True):
+                             abrir=True,
+                             return_bytes=False):
 
     pdf = FPDF(orientation='L', unit='mm', format='letter')
     pdf.add_page()
@@ -612,10 +613,12 @@ def generar_parte_diario_armamento_pdf(cabecera_0, tabla_0, cabecera_1, tabla_1,
 
 
     # Guardar
-    ruta = os.path.abspath(nombre_archivo)
-    pdf.output(ruta)
-
-    if abrir and os.name == "nt":
-        os.startfile(ruta)
-
-    return ruta
+    if return_bytes:
+        pdf_bytes = pdf.output(dest='S').encode('latin1')
+        return pdf_bytes
+    else:
+        ruta = os.path.abspath(nombre_archivo)
+        pdf.output(ruta)
+        if abrir and os.name == "nt":
+            os.startfile(ruta)
+        return ruta

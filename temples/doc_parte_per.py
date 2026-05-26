@@ -1,13 +1,11 @@
 from docxtpl import DocxTemplate
 from datetime import datetime
-from base_datos.base_datos import *
+
 #from mapa.distancias import *
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 import os
 APP_PATH = os.getcwd()
-cursor = b_d_i
 
-concion_bd = Base_datos_central
 def query_bd(self):
     def comando_query(self, **kwargs):
         datos = concion_bd.read_query_dinamico(self, **kwargs)

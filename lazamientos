@@ -1,5 +1,5 @@
-python -m uvicorn login.main:app --reload --port 8000
-python -m uvicorn usuarios.usuarios:app --reload --port 8001
-python -m uvicorn personal.personal:app --reload --port 8002
-python -m uvicorn armamento.armamento:app --reload --port 8003
-python .\servidor_archivos.py
+.\.venv313\Scripts\python.exe -m uvicorn login.main:app --reload --port 8000
+.\.venv313\Scripts\python.exe -m uvicorn usuarios.usuarios:app --reload --port 8001
+.\.venv313\Scripts\python.exe -m uvicorn personal.personal:app --reload --port 8002
+.\.venv313\Scripts\python.exe -m uvicorn armamento.armamento:app --reload --port 8003
+.\.venv313\Scripts\python.exe .\servidor_archivos.py
